@@ -1,0 +1,1 @@
+<div>Component: App has been succesfully created.</div>
