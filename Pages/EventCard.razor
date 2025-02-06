@@ -1,0 +1,25 @@
+@using Shared.Models
+@inject NavigationManager Navigation
+
+<div class="event-card">
+    @if (Event != null)
+    {
+        <h4>@Event.Name</h4>
+        <p>@Event.Date.ToShortDateString() - @Event.Location</p>
+        <button @onclick="() => NavigateToEventDetails(Event.Id)">View Details</button>
+    }
+    else
+    {
+        <p>Invalid event data.</p>
+    }
+</div>
+
+@code {
+    [Parameter, EditorRequired]
+    public required Event Event { get; set; }
+
+    private void NavigateToEventDetails(int eventId)
+    {
+        Navigation.NavigateTo($"/eventdetails/{eventId}");
+    }
+}

@@ -1,0 +1,24 @@
+@page "/events"
+@using Shared.Models
+
+<h3>Event List</h3>
+
+@if (events == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <ul>
+        @foreach (var eventItem in events)
+        {
+            <li>
+                <EventCard Event="eventItem" />
+            </li>
+        }
+    </ul>
+}
+
+@code {
+    // The code-behind file will handle the logic
+}

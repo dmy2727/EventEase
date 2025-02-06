@@ -1,0 +1,39 @@
+@page "/eventdetails/{eventId:int}"
+@using Shared.Models
+@using Shared.Services
+@inject EventService EventService
+@inject NavigationManager Navigation
+
+<h3>Event Details</h3>
+
+@if (eventDetails == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div>
+        <h4>@eventDetails.Name</h4>
+        <p>@eventDetails.Date.ToShortDateString() - @eventDetails.Location</p>
+        <p>@eventDetails.Description</p>
+        <img src="@(eventDetails.ImageUrl ?? "images/default-event.jpg")" alt="@eventDetails.Name" class="event-image" />
+        <button @onclick="NavigateToRegistration">Register</button>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public int eventId { get; set; }
+
+    private Event? eventDetails;
+
+    protected override async Task OnInitializedAsync()
+    {
+        eventDetails = await EventService.GetEventByIdAsync(eventId);
+    }
+
+    private void NavigateToRegistration()
+    {
+        Navigation.NavigateTo($"/register/{eventId}");
+    }
+}
