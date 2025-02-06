@@ -1,0 +1,30 @@
+﻿@inherits LayoutComponentBase
+@using Microsoft.AspNetCore.Components
+
+<PageTitle>EventEASE APP</PageTitle>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-2 bg-dark text-white sidebar">
+            <NavMenu />
+        </div>
+        <div class="col-10 main-content">
+            <div class="top-row px-4 py-2 bg-light border-bottom">
+                <a href="https://learn.microsoft.com/aspnet/" target="_blank" class="btn btn-link">About</a>
+            </div>
+            <div class="content px-4 py-3">
+                @Body
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .sidebar {
+        height: 100vh;
+        position: fixed;
+    }
+    .main-content {
+        margin-left: 16.6667%;
+    }
+</style>
